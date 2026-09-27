@@ -160,7 +160,7 @@
   <!-- ===== Cinematic Hero Video ===== -->
   <section class="cinema-section reveal">
     <div class="cinema-wrap">
-      <video id="cinemaVideo" class="cinema-video" autoplay muted loop playsinline preload="auto">
+      <video id="cinemaVideo" class="cinema-video" muted loop playsinline poster="assets/interiors/hero.webp?v=34" preload="none">
         <source src="assets/gallery/solid-part1.mp4?v=34" type="video/mp4" />
       </video>
       <div class="cinema-caption">
@@ -173,6 +173,12 @@
     (function(){
       var v = document.getElementById('cinemaVideo');
       if (!v) return;
+      var isMobile = window.matchMedia('(max-width:760px)').matches;
+      if (isMobile) return; // skip heavy autoplay video download on mobile for speed
+      v.preload = 'auto';
+      v.autoplay = true;
+      v.load();
+      v.addEventListener('canplay', function(){ v.play().catch(function(){}); }, { once: true });
       var part1 = 'assets/gallery/solid-part1.mp4?v=34';
       var part2 = 'assets/gallery/solid-part2.mp4?v=34';
       var onPart1End = function(){
