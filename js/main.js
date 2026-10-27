@@ -481,3 +481,74 @@ function showToast(msg) {
   document.body.classList.add('is-diwali');
   strip.querySelector('.diwali-x').addEventListener('click', function(){ strip.remove(); document.body.classList.remove('is-diwali'); });
 })();
+
+/* ===== Diwali 2026 extended experience (home page; auto-expires 15 Nov 2026) ===== */
+(function(){
+  if (new Date() > new Date('2026-11-15T23:59:59+05:30')) return;
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var small = window.innerWidth < 700;
+  var hero = document.querySelector('.hero');
+
+  /* hanging lanterns + countdown badge on the hero */
+  if (hero) {
+    hero.classList.add('diwali-hero');
+    var lan = '<span class="lantern l1" aria-hidden="true"><b></b></span><span class="lantern l2" aria-hidden="true"><b></b></span><span class="lantern l3" aria-hidden="true"><b></b></span>';
+    hero.insertAdjacentHTML('afterbegin', lan);
+    var copy = hero.querySelector('.hero-copy');
+    if (copy) {
+      var badge = document.createElement('div');
+      badge.className = 'diwali-badge';
+      var days = Math.ceil((new Date('2026-11-08T00:00:00+05:30') - new Date()) / 86400000);
+      var txt = days > 1 ? days + ' days to Diwali' : days === 1 ? 'Diwali is tomorrow' : days === 0 ? 'Happy Diwali today' : 'Subh Deepawali';
+      badge.innerHTML = '<span class="diwali-spark"></span>Diwali 2026 &middot; ' + txt;
+      copy.insertBefore(badge, copy.firstChild);
+    }
+  }
+
+  /* "Light up your Diwali" section on the home page */
+  var feat = document.querySelector('.feature-strip');
+  if (hero && feat && !document.querySelector('.diwali-section')) {
+    var sec = document.createElement('section');
+    sec.className = 'diwali-section';
+    sec.innerHTML =
+      '<div class="container">' +
+      '<div class="diwali-head"><span class="diwali-eyebrow">Festival of Lights</span>' +
+      '<h2>Light Up Your <span>Diwali</span></h2>' +
+      '<p>Fresh lighting is the best Diwali upgrade. Warm, bright, glare-free LED lighting to make every corner glow this festive season.</p>' +
+      '<div class="diwali-divider" aria-hidden="true"><i></i><em></em><i></i></div></div>' +
+      '<div class="diwali-cards">' +
+      '<a class="diwali-card" href="/cob-downlights"><div class="dc-ico">🏠</div><h3>Homes &amp; Living Rooms</h3><p>Recessed COB downlights for soft, warm festive ambience.</p><span>Explore COB Downlights &rarr;</span></a>' +
+      '<a class="diwali-card" href="/led-track-lights"><div class="dc-ico">🛍️</div><h3>Shops &amp; Showrooms</h3><p>Track lights that make products shine for festive shoppers.</p><span>Explore Track Lights &rarr;</span></a>' +
+      '<a class="diwali-card" href="/led-panel-lights"><div class="dc-ico">🏢</div><h3>Offices &amp; Hotels</h3><p>Even, bright panel lighting for workspaces and lobbies.</p><span>Explore Panel Lights &rarr;</span></a>' +
+      '</div>' +
+      '<div class="diwali-cta-row"><a class="btn btn-primary" href="https://wa.me/919860116122?text=' +
+      encodeURIComponent('Hello SOLID, I want Diwali lighting for my space.') +
+      '" target="_blank" rel="noopener">Get Diwali Lighting Help on WhatsApp</a></div></div>';
+    feat.parentNode.insertBefore(sec, feat);
+  }
+
+  /* rising golden embers (canvas) */
+  if (reduce || !hero) return;
+  var cv = document.createElement('canvas');
+  cv.className = 'diwali-embers';
+  cv.setAttribute('aria-hidden', 'true');
+  document.body.appendChild(cv);
+  var ctx = cv.getContext('2d'), W, H, P = [], N = small ? 14 : 42, raf;
+  function size(){ W = cv.width = window.innerWidth; H = cv.height = window.innerHeight; }
+  function mk(init){ return { x: Math.random() * W, y: init ? Math.random() * H : H + 10, r: 1 + Math.random() * 2.2, s: .25 + Math.random() * .7, d: Math.random() * 6.28, a: .35 + Math.random() * .55 }; }
+  size(); for (var i = 0; i < N; i++) P.push(mk(true));
+  window.addEventListener('resize', size);
+  function tick(){
+    ctx.clearRect(0, 0, W, H);
+    for (var i = 0; i < P.length; i++) {
+      var p = P[i]; p.y -= p.s; p.d += .02; p.x += Math.sin(p.d) * .4;
+      if (p.y < -10) P[i] = mk(false);
+      var g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 4);
+      g.addColorStop(0, 'rgba(255,214,102,' + p.a + ')'); g.addColorStop(1, 'rgba(255,140,30,0)');
+      ctx.fillStyle = g; ctx.beginPath(); ctx.arc(p.x, p.y, p.r * 4, 0, 6.283); ctx.fill();
+    }
+    raf = requestAnimationFrame(tick);
+  }
+  tick();
+  document.addEventListener('visibilitychange', function(){ if (document.hidden) cancelAnimationFrame(raf); else tick(); });
+})();

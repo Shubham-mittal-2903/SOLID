@@ -711,3 +711,39 @@ ul{list-style:none}
 .is-diwali .hero h1 .accent{color:#FDB813}
 @media (max-width:600px){.diwali-sub{display:none}.diwali-lights i:nth-child(n+21){display:none}.diwali-msg{font-size:.82rem;padding:8px 38px 10px}}
 @media (prefers-reduced-motion:reduce){.diwali-lights i{animation:none}}
+
+/* ===== Diwali 2026 extended experience ===== */
+.diwali-embers{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:5}
+.diwali-hero{position:relative}
+.diwali-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(253,184,19,.12);border:1px solid rgba(253,184,19,.5);color:#FFD35C;font-family:var(--font-head);font-weight:600;font-size:.82rem;letter-spacing:.4px;padding:6px 14px;border-radius:999px;margin-bottom:16px;box-shadow:0 0 22px rgba(253,184,19,.18)}
+.diwali-spark{width:8px;height:8px;border-radius:50%;background:#FDB813;box-shadow:0 0 10px 3px rgba(253,184,19,.8);animation:diwali-twinkle 1.6s ease-in-out infinite}
+.lantern{position:absolute;top:0;width:46px;height:0;z-index:3;transform-origin:top center;animation:lantern-swing 4.5s ease-in-out infinite;pointer-events:none}
+.lantern::before{content:"";position:absolute;left:50%;top:0;width:2px;height:var(--cord,60px);background:linear-gradient(#b8860b,#FDB813);transform:translateX(-50%)}
+.lantern b{position:absolute;left:0;top:var(--cord,60px);width:46px;height:64px;border-radius:14px 14px 22px 22px;background:linear-gradient(180deg,#ffb020,#e0621a 60%,#9c2a00);box-shadow:0 0 26px 8px rgba(255,140,30,.55),inset 0 0 14px rgba(255,235,160,.7)}
+.lantern b::before{content:"";position:absolute;left:8px;right:8px;top:-6px;height:8px;border-radius:6px;background:#7a4a00}
+.lantern b::after{content:"";position:absolute;left:50%;bottom:-14px;width:2px;height:16px;background:#FDB813;transform:translateX(-50%);box-shadow:0 8px 0 2px #FDB813}
+.lantern.l1{left:.6%;--cord:18px;animation-delay:-.6s;transform:scale(.7)}
+.lantern.l2{left:47%;--cord:26px;animation-delay:-2s;transform:scale(.8)}
+.lantern.l3{right:1.5%;--cord:30px;animation-delay:-1.2s;transform:scale(.85)}
+@keyframes lantern-swing{0%,100%{transform:rotate(4deg)}50%{transform:rotate(-4deg)}}
+.diwali-section{padding:78px 0 70px;background:radial-gradient(800px 320px at 50% 0%,rgba(253,184,19,.14),transparent 70%),linear-gradient(180deg,#1a0a00 0%,var(--bg) 100%);border-top:1px solid rgba(253,184,19,.25);border-bottom:1px solid rgba(253,184,19,.15);position:relative;overflow:hidden}
+.diwali-head{text-align:center;max-width:720px;margin:0 auto 38px}
+.diwali-eyebrow{display:inline-block;font-family:var(--font-head);font-size:.78rem;letter-spacing:2.4px;text-transform:uppercase;color:#FDB813;margin-bottom:10px}
+.diwali-head h2{font-family:var(--font-head);font-size:clamp(1.9rem,4.4vw,2.9rem);color:#fff;line-height:1.15;margin-bottom:12px}
+.diwali-head h2 span{background:linear-gradient(90deg,#FFD35C,#FF8A1F);-webkit-background-clip:text;background-clip:text;color:transparent}
+.diwali-head p{color:#E8D3B0}
+.diwali-divider{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:20px}
+.diwali-divider i{height:1px;width:90px;background:linear-gradient(90deg,transparent,#FDB813)}
+.diwali-divider i:last-child{background:linear-gradient(90deg,#FDB813,transparent)}
+.diwali-divider em{width:12px;height:12px;transform:rotate(45deg);background:#FDB813;box-shadow:0 0 14px 3px rgba(253,184,19,.7)}
+.diwali-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.diwali-card{display:block;background:linear-gradient(160deg,rgba(255,170,50,.10),rgba(255,255,255,.02));border:1px solid rgba(253,184,19,.28);border-radius:18px;padding:26px 22px;color:#E8D3B0;text-decoration:none;transition:transform .25s var(--ease),box-shadow .25s,border-color .25s}
+.diwali-card:hover{transform:translateY(-6px);border-color:#FDB813;box-shadow:0 18px 40px rgba(253,140,30,.22),0 0 0 1px rgba(253,184,19,.4)}
+.dc-ico{font-size:2rem;margin-bottom:10px}
+.diwali-card h3{font-family:var(--font-head);color:#fff;font-size:1.12rem;margin-bottom:6px}
+.diwali-card p{font-size:.92rem;margin-bottom:14px}
+.diwali-card span{color:#FFD35C;font-family:var(--font-head);font-weight:600;font-size:.88rem}
+.diwali-cta-row{text-align:center;margin-top:34px}
+@media (max-width:900px){.diwali-cards{grid-template-columns:1fr}.lantern.l2{display:none}.diwali-section{padding:56px 0 52px}}
+@media (max-width:600px){.lantern{width:34px}.lantern b{width:34px;height:48px}.lantern.l1{left:3%}.lantern.l3{right:3%}.diwali-badge{font-size:.74rem}}
+@media (prefers-reduced-motion:reduce){.lantern,.diwali-spark{animation:none}}
