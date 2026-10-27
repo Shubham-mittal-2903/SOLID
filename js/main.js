@@ -460,3 +460,24 @@ function showToast(msg) {
   clearTimeout(t._timer);
   t._timer = setTimeout(() => t.classList.remove("show"), 3500);
 }
+
+/* ===== Diwali 2026 festive layer (auto-expires 15 Nov 2026) ===== */
+(function(){
+  if (new Date() > new Date('2026-11-15T23:59:59+05:30')) return;
+  var strip = document.createElement('div');
+  strip.className = 'diwali-strip';
+  strip.setAttribute('role', 'note');
+  var bulbs = '';
+  for (var i = 0; i < 40; i++) bulbs += '<i></i>';
+  strip.innerHTML =
+    '<div class="diwali-lights" aria-hidden="true">' + bulbs + '</div>' +
+    '<div class="diwali-msg"><span class="diwali-diya" aria-hidden="true">🪔</span>' +
+    '<strong>Happy Diwali!</strong> <span class="diwali-sub">Light up your space this festive season with SOLID LED lighting.</span>' +
+    '<a class="diwali-cta" href="https://wa.me/919860116122?text=' +
+    encodeURIComponent('Hello SOLID, I want to enquire about LED lighting for Diwali.') +
+    '" target="_blank" rel="noopener">Enquire on WhatsApp</a>' +
+    '<button class="diwali-x" type="button" aria-label="Close festive banner">×</button></div>';
+  document.body.insertBefore(strip, document.body.firstChild);
+  document.body.classList.add('is-diwali');
+  strip.querySelector('.diwali-x').addEventListener('click', function(){ strip.remove(); document.body.classList.remove('is-diwali'); });
+})();
