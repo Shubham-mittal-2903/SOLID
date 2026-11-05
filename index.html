@@ -161,11 +161,11 @@
   <section class="cinema-section reveal">
     <div class="cinema-wrap">
       <video id="cinemaVideo" class="cinema-video" muted loop playsinline poster="assets/interiors/hero.webp?v=34" preload="none">
-        <source src="assets/gallery/solid-part1.mp4?v=40" type="video/mp4" />
+        <source src="assets/gallery/solid-reel.mp4?v=50" type="video/mp4" />
       </video>
       <div class="cinema-caption">
         <span class="kicker" style="color:#fff">Lighting Everything</span>
-        <h2 style="color:#fff">Watch a Space Come Alive</h2>
+        <h2 style="color:#fff">See the SOLID Range</h2>
       </div>
     </div>
   </section>
@@ -185,26 +185,7 @@
       if ('IntersectionObserver' in window) {
         new IntersectionObserver(function(es, o){ if (es[0].isIntersecting) { o.disconnect(); start(); } }, { rootMargin: '200px' }).observe(v);
       } else { start(); }
-      var part1 = 'assets/gallery/solid-part1.mp4?v=40';
-      var part2 = 'assets/gallery/solid-part2.mp4?v=40';
-      var onPart1End = function(){
-        v.removeEventListener('ended', onPart1End);
-        v.loop = false;
-        v.src = part2;
-        v.addEventListener('ended', onPart2End);
-        v.load();
-        v.play().catch(function(){});
-      };
-      var onPart2End = function(){
-        v.removeEventListener('ended', onPart2End);
-        v.src = part1;
-        v.loop = false;
-        v.addEventListener('ended', onPart1End);
-        v.load();
-        v.play().catch(function(){});
-      };
-      v.loop = false;
-      v.addEventListener('ended', onPart1End);
+      v.loop = true;
     })();
   </script>
 
@@ -383,10 +364,10 @@
       </div>
       <div class="showcase-videos reveal">
         <video controls preload="none" playsinline poster="assets/gallery/showcase-1.webp">
-          <source src="assets/gallery/solid-showcase-1.mp4?v=40" type="video/mp4" />
+          <source src="assets/gallery/solid-reel-a.mp4?v=50" type="video/mp4" />
         </video>
         <video controls preload="none" playsinline poster="assets/gallery/showcase-2.webp">
-          <source src="assets/gallery/solid-showcase-2.mp4?v=40" type="video/mp4" />
+          <source src="assets/gallery/solid-reel-b.mp4?v=50" type="video/mp4" />
         </video>
       </div>
     </div>
