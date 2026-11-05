@@ -51,8 +51,8 @@ const SOLID = {
       setTimeout(() => {
         overlay.remove();
         document.body.style.overflow = prevOverflow;
-      }, 700);
-    }, 1900);
+      }, 450);
+    }, 1100);
   };
 
   if (document.body) run();

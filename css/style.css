@@ -564,14 +564,14 @@ ul{list-style:none}
    Calm, single smooth build — no strobing. A soft glow blooms in,
    the logo eases into it, then the site fades in. */
 .sld-intro{position:fixed;inset:0;z-index:9999;background:#0B1F3A;display:flex;align-items:center;justify-content:center;
-  overflow:hidden;transition:opacity .7s ease}
+  overflow:hidden;transition:opacity .45s ease}
 .sld-intro--out{opacity:0;pointer-events:none}
 .sld-intro-glow{position:absolute;width:52vmax;height:52vmax;border-radius:50%;
   background:radial-gradient(circle,rgba(255,255,255,.4) 0%,rgba(77,162,255,.18) 42%,transparent 72%);
-  opacity:0;transform:scale(.5);animation:sldGlow 1.6s ease-out .1s 1 both}
+  opacity:0;transform:scale(.5);animation:sldGlow 1s ease-out 0s 1 both}
 .sld-intro-logo{position:relative;width:min(36vw,160px);opacity:0;transform:scale(.8);
   filter:drop-shadow(0 0 16px rgba(255,255,255,.35));
-  animation:sldLogoIn 1s cubic-bezier(.2,.8,.2,1) .5s 1 both}
+  animation:sldLogoIn .7s cubic-bezier(.2,.8,.2,1) .15s 1 both}
 @keyframes sldGlow{0%{opacity:0;transform:scale(.5)}100%{opacity:.75;transform:scale(1)}}
 @keyframes sldLogoIn{0%{opacity:0;transform:scale(.8)}100%{opacity:1;transform:scale(1)}}
 @media (max-width:600px){.sld-intro-logo{width:48vw}}
